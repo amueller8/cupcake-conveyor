@@ -12,8 +12,8 @@ The other mode is decorating mode, where you can frost a plain cupcake and also 
 The conveyor option is great for people who don't feel like they are artists-- they can still inform a creative process without much mouse-dragging!
 The decorating mode is great for freestyle artists, and each screenshot you take will be different due to the sprinkles flashing colors.
 
-(The conveyor option was loosely inspired by [this game I played in childhood, Hey Girls Muffin Maker ](https://www.numuki.com/game/the-hey-girls-muffin-maker/); (have linked to a hosting site).
-That game gave negative feedback if you messed up though (it was humorous). My version of the game is simplified, and just lets the creator create.
+(The conveyor option was loosely inspired by [this game I played in childhood, Hey Girls Muffin Maker ](https://www.numuki.com/game/the-hey-girls-muffin-maker/) (have linked to a hosting site).
+That game gave negative feedback if you messed up though-- which could be humorous, but I wanted to let the user evaluate their own cupcake-making. My version of the game is simplified, and just lets the creator create.
 
 ### What are users casually creating?
 Users are casually creating cupcakes in a variety of ways!
