@@ -43,6 +43,8 @@ After clearing the entry screen:
 # Link to Play
 See it on openprocessing.org [here](https://openprocessing.org/sketch/1772103);
 
+You can also paste this code into a processing script yourself, although I coded it in their browser IDE.
+
 
 # Personal Meaning
 
