@@ -21,7 +21,7 @@ boolean frostingMode = false;
 boolean sprinklesMode = false;
 
 ArrayList<PVector> listMousePositions = new ArrayList<PVector>();
-ArrayList<PVector> sprinkesPos = new ArrayList<PVector>();
+ArrayList<PVector> sprinklesPos = new ArrayList<PVector>();
 
 void setup() {
 
@@ -37,9 +37,7 @@ void mousePressed() {
 		fill(55);
 		rect(250, 100, 275, 200);
 		if (mouseX > 250 && mouseX < 275 && mouseY > 100 && mouseY < 150) {
-			println("hi" + str(num_frosting_changes+1));
 			num_frosting_changes += 1;
-			
 			frosting_color = frosting_colors[num_frosting_changes % num_colors];
 		
 
@@ -100,6 +98,13 @@ void keyPressed() {
 		if(keyCode == 68){
 			sprinklesMode = !sprinklesMode;
 		}
+		if(sprinklesMode){
+			if(keyCode == 49){
+					sprinklesPos.add(new PVector(mouseX, mouseY));
+	
+			}
+		}
+		
 
 	}
 }
@@ -159,7 +164,6 @@ class cupcake {
 			ellipse(timeLoop(60, offset) * width + 15, y - 5, 30, 10);
 		}
 		else if (cupcake_iced[index][0] && cupcake_iced[index][3]) {
-			println("purple bit set at least");
 			fill(frosting_colors[2]);
 			ellipse(timeLoop(60, offset) * width + 15, y - 5, 30, 10);
 		}
@@ -368,9 +372,13 @@ void draw() {
 		string si = "f - to frost";
 		string sii = "u- to stop frosting";
 		string siii = "x- go back to conveyor belt mode";
+		string s4 = "d- enter and exit sprinkles mode!";
+		string s5 = "while in sprinkles mode, hit 1 to place a sprinkle at your mouse";
 		text(si, 10, 300);
 		text(sii, 10, 325);
 		text(siii, 10, 350);
+		text(s4, 10, 375);
+		text(s5, 10, 400);
 
 			//big cupcake
 			//wrapper
@@ -400,9 +408,17 @@ void draw() {
 			
 		} else {
 			
+			
 			for(PVector pv : listMousePositions ) {
 
 			 ellipse(pv.x,pv.y, 20, 20); 
+
+			}
+			
+			for(PVector pv : sprinklesPos ) {
+			 fill(random(0,255), random(0,255), random(0,255));
+			 ellipse(pv.x,pv.y, 5, 5); 
+			 fill(frosting_colors[0]);
 
 			}
 			
