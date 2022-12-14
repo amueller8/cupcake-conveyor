@@ -54,8 +54,7 @@ It also was very fun to create something "cute": I sometimes shy away from stuff
 feel like I'm playing into a stereotype of being too girly, but this was really fun and I'm so glad I didn't feel personal pressure to
 do something more stereotypically intellectual/lofty.
 
-
-At least 1 paragraph that explains how working on this system challenged you as a computer scientist. How did you push yourself outside of your comfort zone? Why was this an important challenge for you? What are the next steps for you going forward?
+Next steps going forward may be to fix some of these bugs and add in a few features that didn't fit with the scope of finals/timeline but that I would love to include (dropping frosting animation, for example).
 
 # Challenges
 I had never used Processing.Js before and I was in for a big learning curve in terms of figuring out animations, etc.
@@ -65,7 +64,7 @@ a la Holly Hobby Muffin Maker, but although I had the falling part working very 
 proved to be elusive with the few strategies I tried).
 It was a good lesson in scope, for sure.
 
-#Bugs
+# Bugs
 I turned a bug into a feature-- with the frosting bag, although you could cycle through 4 colors, the 4th color was coming out as a no-fill no stroke
 shape. So I made that "no frosting". My intuition is that is is something with how I update num_frosting_changes (number of clicks on the frosting bag) versus
 how often the draw loop is updated, but I spent a good hour debugging and didn't quite resolve it so turned it into a feature.
@@ -74,7 +73,7 @@ Also, I hard code the icing start color as pink, so even if you start with the f
 it will come out pink. This was to keep consistency among the start colors: I had considered a global array of start colors for each cupcake
 but decided to scrap it (seemed like a lot of for loops/etc) in the interest of finishing out the rest of features.
 
-#Resources
+# Resources
 In additon to the processing.js documentation, I found these resources helpful:
 
 https://discourse.processing.org/t/how-to-save-a-previous-mouse-position/24434/2
