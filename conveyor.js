@@ -5,6 +5,7 @@ Plate[] thePlates = new plates[8];
 boolean[] show = new boolean[8];
 boolean[][] cupcake_iced = new boolean[8][5];
 
+
 //pink, teal, purple, none
 color[] frosting_colors = {color(255, 192, 203), color(53, 252, 219), color(159, 53, 252), color(255,255,255)};
 int num_colors = 4;
@@ -15,7 +16,12 @@ int num_frosting_changes = 0;
 color frosting_color = frosting_colors[0];
 int curr_cupcake = 0;
 boolean running = false;
+boolean decoratingMode = false;
+boolean frostingMode = false;
+boolean sprinklesMode = false;
 
+ArrayList<PVector> listMousePositions = new ArrayList<PVector>();
+ArrayList<PVector> sprinkesPos = new ArrayList<PVector>();
 
 void setup() {
 
@@ -27,7 +33,7 @@ void setup() {
 void mousePressed() {
 	num_mouse_presses += 1;
 
-	if (running) {
+	if (running && !decoratingMode) {
 		fill(55);
 		rect(250, 100, 275, 200);
 		if (mouseX > 250 && mouseX < 275 && mouseY > 100 && mouseY < 150) {
@@ -35,16 +41,19 @@ void mousePressed() {
 			num_frosting_changes += 1;
 			
 			frosting_color = frosting_colors[num_frosting_changes % num_colors];
-			
 		
 
 		}
-	}
+	
+	} 
+	
+	
 }
 
 
 void keyPressed() {
 
+	if(!decoratingMode){
 	if (keyCode == '66' || keyCode == 66) {
 		show[curr_cupcake] = true;
 		if (curr_cupcake + 1 < 8) {
@@ -58,6 +67,10 @@ void keyPressed() {
 		setTimeout(loop, 3000);
 
 	}
+		
+	if(keyCode == 88){
+		decoratingMode = !decoratingMode; //toggle
+	}
 
 	for (int k = 0; k < 8; k++) {
 		if (keyCode == (49 + k) && show[k] == true) {
@@ -66,6 +79,26 @@ void keyPressed() {
 				int bit_set = num_frosting_changes % num_colors;
 				cupcake_iced[k][bit_set+1] = true;
 		
+		}
+
+	}
+		
+	}  else {
+	//else if decorating 
+		if(keyCode == 88){
+		decoratingMode = !decoratingMode; //toggle
+		}
+		
+		if(keyCode == 70){ //f = frost
+			frostingMode = true;
+		} 
+		if(keyCode ==  85){ //u = unfrost
+			 frostingMode = false;
+			}
+		
+		//d for sprinkles
+		if(keyCode == 68){
+			sprinklesMode = !sprinklesMode;
 		}
 
 	}
@@ -261,15 +294,19 @@ class conveyorBelt {
 
 void draw() {
 	background(255);
+	
 
+
+	if(num_mouse_presses == 0){
 	textSize(30);
 	string s = "Welcome to the cupcake factory! You can design cupcakes by following the instructions.";
 	strng s2 = "There is a twist, though- the cupcakes are coming on a conveyor belt, so you must click deliberately! Click to get started.";
 	fill(200);
 	text(s, 50, 50, 450, 200);
 	text(s2, 50, 250, 450, 200);
-
-	if (num_mouse_presses >= 1) {
+	}
+	
+	if (num_mouse_presses >= 1 && !decoratingMode) {
 		running = true;
 
 		background(255);
@@ -285,6 +322,7 @@ void draw() {
 		string i3 = "keys 1-8, frost that number cupcake";
 		string i4 = "click icing bag- toggle icing color";
 		string i5 = "s- stop belt for 3 seconds so you can screenshot";
+		string i6 = "x - enter custom decorating mode";
 
 		textSize(12);
 		fill(255);
@@ -293,6 +331,7 @@ void draw() {
 		text(i3, 10, 400);
 		text(i4, 10, 425);
 		text(i5, 10, 450);
+		text(i6, 10, 475);
 
 		conveyorBelt cb = new conveyorBelt(this, 0, 250);
 		//cupcake height is 20 + some for frosting, 
@@ -316,7 +355,67 @@ void draw() {
 		}
 
 
-	}
+	} 
+	
+	//else??
+	
+	if(decoratingMode){
+		background(255);
+		
+		textSize(12);
+		fill(0);
+		
+		string si = "f - to frost";
+		string sii = "u- to stop frosting";
+		string siii = "x- go back to conveyor belt mode";
+		text(si, 10, 300);
+		text(sii, 10, 325);
+		text(siii, 10, 350);
 
+			//big cupcake
+			//wrapper
+			//30 -> 200 -> 6.66 scale
+		fill(204, 204, 255);
+		quad(50, 100, 250, 100, 216, 100 + 133,  50+33, 100+133);
+
+			//cake
+		fill(237, 209, 149);
+		ellipse(50 + 15*6.5, 100, 200, 40); 
+
+		noStroke();
+		fill(frosting_colors[0]);
+
+		if (frostingMode){
+			ellipse(mouseX, mouseY, 20,20);
+
+			//mouse pos = https://discourse.processing.org/t/how-to-save-a-previous-mouse-position/24434/2
+			if(mouseX != pmouseX){
+					listMousePositions.add(new PVector(mouseX, mouseY));
+			}
+			for(PVector pv : listMousePositions ) {
+
+			 ellipse(pv.x,pv.y, 20, 20); 
+
+			}
+			
+		} else {
+			
+			for(PVector pv : listMousePositions ) {
+
+			 ellipse(pv.x,pv.y, 20, 20); 
+
+			}
+			
+		}
+		
+		
+
+		
+		//}
+	
+	
+		
+		
+	}
 
 }
