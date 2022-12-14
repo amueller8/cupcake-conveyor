@@ -1,12 +1,21 @@
+/*
+Cupcake Conveyor
+Abby Mueller
+CSC1 3725 - Bowdoin
+
+*/
+
+
+//constants/globals
 int SQUARE_DIMENSION = 63;
 
 cupcake[] theCupcakes = new cupcake[8];
 Plate[] thePlates = new plates[8];
 boolean[] show = new boolean[8];
+//keep track of which color icing cupcakes have
 boolean[][] cupcake_iced = new boolean[8][5];
 
-
-//pink, teal, purple, none
+//frosting colors: pink, teal, purple, none
 color[] frosting_colors = {color(255, 192, 203), color(53, 252, 219), color(159, 53, 252), color(255,255,255)};
 int num_colors = 4;
 
@@ -16,6 +25,8 @@ int num_frosting_changes = 0;
 color frosting_color = frosting_colors[0];
 int curr_cupcake = 0;
 boolean running = false;
+
+//for the second decoration mode
 boolean decoratingMode = false;
 boolean frostingMode = false;
 boolean sprinklesMode = false;
@@ -133,7 +144,6 @@ class cupcake {
 
 	}
 
-
 	void move() {
 		//this.canvas.stroke(50,50,50);
 		noStroke();
@@ -173,12 +183,7 @@ class cupcake {
 			//fill(frosting_colors[2]);
 		}
 
-		
-
 	}
-
-
-
 }
 
 class Plate {
@@ -186,7 +191,6 @@ class Plate {
 	private float x;
 	private float y;
 	private int index;
-
 
 	private PApplet canvas;
 	Plate(PApplet canvas, float x, float y, int curr) {
@@ -217,8 +221,6 @@ class Plate {
 		this.canvas.ellipse(timeLoop(60, offset) * width + 15, y, 30, 20);
 
 	}
-
-
 }
 
 class pipingBag {
@@ -256,20 +258,13 @@ class pipingBag {
 		text(s, x + 5, y + 10);
 
 	}
-
-
-}
-class batterBowl {
-
 }
 
 class conveyorBelt {
 
 	private float x;
 	private float y;
-
 	private PApplet canvas;
-
 
 	conveyorBelt(PApplet canvas, float x, float y) {
 		this.canvas = canvas;
@@ -299,8 +294,6 @@ class conveyorBelt {
 void draw() {
 	background(255);
 	
-
-
 	if(num_mouse_presses == 0){
 	textSize(30);
 	string s = "Welcome to the cupcake factory! You can design cupcakes by following the instructions.";
@@ -353,15 +346,9 @@ void draw() {
 			if (show[j] == true) {
 				thePlates[j].move();
 				theCupcakes[j].move();
-
-
 			}
 		}
-
-
 	} 
-	
-	//else??
 	
 	if(decoratingMode){
 		background(255);
@@ -424,13 +411,11 @@ void draw() {
 			
 		}
 		
-		
-
+	
 		
 		//}
 	
-	
-		
+
 		
 	}
 
